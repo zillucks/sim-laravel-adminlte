@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="PostgreSQL - db_apotek@localhost" uuid="db1f728f-bad3-430a-b479-7a7d3242389d">
+      <secret-storage>master_key</secret-storage>
+      <user-name>zillucks</user-name>
+      <schema-pattern>db_apotek.master db_apotek.public</schema-pattern>
+      <default-schemas>db_apotek.master</default-schemas>
+    </data-source>
+  </component>
+</project>
