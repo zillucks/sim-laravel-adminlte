@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
+use App\Models\Barangsupplier;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 
@@ -11,7 +13,8 @@ class SupplierController extends Controller
 {
 	public function index()
 	{
-		$data['suppliers'] = Supplier::paginate(10);
+		$data['suppliers'] = Supplier::orderBy('namasupplier', 'asc')->paginate(10);
+
 		return view('supplier.index', $data);
     }
 
@@ -47,4 +50,22 @@ class SupplierController extends Controller
 			'success' => 'Input Data Supplier Sukses'
 		]);
 	}
+
+	public function updatesupplier(Request $request)
+	{
+		$supplier = Supplier::find($request->pk);
+
+		$name = $request->get('name');
+		$value = $request->get('value');
+		$supplier->$name = $value;
+
+		$supplier->save();
+	}
+
+	public function tambahproduk(Request $request, $id)
+	{
+		$data = [];
+		return view('supplier.tambahproduk', $data);
+	}
+	
 }

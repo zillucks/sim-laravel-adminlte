@@ -14,6 +14,7 @@ class Supplier extends Model
 
 	private $rules = [
 		'kdsupplier'	=> 'sometimes|required|unique:pgsql.master.supplier',
+		'namasupplier'	=> 'sometimes|required',
 		'nohp'			=> 'required',
 		'email'			=> 'sometimes|unique:pgsql.master.supplier|email',
 	];
@@ -29,4 +30,23 @@ class Supplier extends Model
 
 		return $validator;
 	}
+
+	/*
+	public function getNamasupplierAttribute($value)
+	{
+		$slug = str_slug($value);
+		$data = [
+			'slug' => $slug,
+			'value'=> $value
+		];
+		return $data;
+	}
+	*/
+
+	public function barangs()
+	{
+		return $this->belongsToMany('App\Models\Barang', 'master.barangsupplier', 'kdsupplier', 'kdbarang')
+			->withPivot('harga');
+	}
+
 }

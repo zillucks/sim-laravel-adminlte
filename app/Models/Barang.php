@@ -37,4 +37,10 @@ class Barang extends Model
 	{
 		return $this->belongsTo('App\Models\Kategori', 'kdkategori');
 	}
+
+	public function suppliers()
+	{
+		return $this->belongsToMany('App\Models\Supplier', 'master.barangsupplier', 'kdbarang', 'kdsupplier')
+			->withPivot('harga');
+	}
 }
