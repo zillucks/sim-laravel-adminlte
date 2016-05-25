@@ -3,6 +3,8 @@
 <title>SIM Apotek Subur Farma</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<!-- jquery-ui-1.11.4 -->
+<link rel="stylesheet" href="{{ elixir('css/jquery-ui.css') }}">
 <!-- Bootstrap 3.3.6 -->
 <link rel="stylesheet" href="{{ elixir('css/bootstrap.css') }}">
 <!-- Font Awesome -->
