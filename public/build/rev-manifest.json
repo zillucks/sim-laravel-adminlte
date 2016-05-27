@@ -2,10 +2,12 @@
   "css/AdminLTE.css": "css/AdminLTE-a14653412b.css",
   "css/bootstrap.css": "css/bootstrap-4c289002b9.css",
   "css/font-awesome.css": "css/font-awesome-3386915190.css",
+  "css/jquery-ui.css": "css/jquery-ui-a20495d61c.css",
   "css/morris.css": "css/morris-36be18b302.css",
   "css/x-editable.css": "css/x-editable-1f2cd2dcf4.css",
   "js/AdminLTE.js": "js/AdminLTE-6fce604cfb.js",
   "js/bootstrap.js": "js/bootstrap-aaaad6394f.js",
   "js/jquery-2.2.3.js": "js/jquery-2.2.3-91406e5cfd.js",
+  "js/jquery-ui-custom.js": "js/jquery-ui-custom-db9dbbccc8.js",
   "js/x-editable.js": "js/x-editable-ca28da9975.js"
 }

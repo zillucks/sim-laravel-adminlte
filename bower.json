@@ -1,0 +1,21 @@
+{
+  "name": "sim-laravel-adminlte",
+  "description": "Sistem Informasi Manajemen using Laravel with AdminLTE",
+  "main": "",
+  "authors": [
+    "Lutfi Ghazali <zillucks988@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/zillucks/sim-laravel-adminlte",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-ui": "^1.11.4"
+  }
+}

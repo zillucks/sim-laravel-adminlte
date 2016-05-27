@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth', 'role:administrator']], function() {
 
 	Route::get('supplier', 'SupplierController@index');
 	Route::group(['as' => 'supplier::'], function() {
+		Route::get('supplier', 'SupplierController@index')->name('supplier');
 		Route::get('supplier/tambahsupplier', 'SupplierController@tambahsupplier')->name('tambahsupplier');
 		Route::post('supplier/savesupplier', 'SupplierController@savesupplier')->name('savesupplier');
 		Route::post('supplier/updatesupplier', 'SupplierController@updatesupplier')->name('updatesupplier');

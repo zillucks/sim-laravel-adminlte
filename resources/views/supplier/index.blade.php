@@ -105,7 +105,7 @@
 												<div class="box-header">
 													<h4 class="box-title text-info">Daftar produk dijual</h4>
 													<div class="box-tools pull-right">
-														<a href="" title="Tambah Produk Supplier">
+														<a href="{{ route('supplier::tambahproduk', $supplier->kdsupplier) }}" title="Tambah Produk Supplier">
 															<i class="fa fa-plus"></i>
 														</a>
 													</div>

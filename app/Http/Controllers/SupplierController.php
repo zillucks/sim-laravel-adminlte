@@ -64,7 +64,7 @@ class SupplierController extends Controller
 
 	public function tambahproduk(Request $request, $id)
 	{
-		$data = [];
+		$data['supplier'] = Supplier::find($id);
 		return view('supplier.tambahproduk', $data);
 	}
 	
