@@ -20,21 +20,33 @@
 					<div class="box-group">
 						<div class="box no-header no-border">
 							<div class="box-body">
-								<div class="form-inline">
+								<div class="form-inline col-xs-12 col-md-10 col-md-offset-1">
 									<div class="form-group ui-widget">
 										<label for="autocomplete">Cari Produk</label>
-										<input type="text" id="autocomplete" name="kdbarang" class="form-control" placeholder="Cari Produk">
+										<input type="text" id="autocomplete" data-id="" name="kdbarang" class="form-control" placeholder="Cari Produk">
 									</div>
 									<div class="form-group">
-										<input type="text" name="harga" class="form-control">
+                                        <label for="harga" class="sr-only">Harga</label>
+										<input type="text" id="harga" name="harga" class="form-control" placeholder="Harga Supplier">
 									</div>
-									<button type="button" class="btn btn-small btn-success"><i class="fa fa-plus"></i></button>
-								</div>
+                                    <button id="btn-add-produk" type="button" class="btn btn-small btn-success"><i class="fa fa-plus"></i></button>
+                                </div>
+                                <div id="error-block" class="col-xs-12 col-md-10 col-md-offset-1"></div>
 							</div>
 						</div>
 						<div class="box no-header no-border">
 							<div class="box-body">
-								Temp view list produk akan ditambahkan, simpan jika ok, dismiss jika batal
+								<table class="table table-bordered table-condensed table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Produk</th>
+                                        <th>Harga Supplier</th>
+                                        <th><i class="fa fa-fw fa-wrench"></i></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tbl-produk" data-url="{{ route('supplier::saveproduk', $supplier->kdsupplier) }}"></tbody>
+                                    <tfoot id="produk-submit"></tfoot>
+                                </table>
 							</div>
 						</div>
 					</div>
@@ -42,11 +54,13 @@
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		{{ dump(getDataProduk($supplier->kdsupplier)) }}
+	</div>
 @endsection
 
 @section('scripts')
 	@parent
 	<script src="{{ elixir('js/jquery-ui-custom.js') }}"></script>
-	{{--<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>--}}
 	<script src="{{ asset('scripts/_addproduk.js') }}"></script>
 @endsection

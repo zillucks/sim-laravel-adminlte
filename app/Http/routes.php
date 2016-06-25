@@ -38,6 +38,7 @@ Route::group(['middleware' => ['auth', 'role:administrator']], function() {
 		Route::post('supplier/savesupplier', 'SupplierController@savesupplier')->name('savesupplier');
 		Route::post('supplier/updatesupplier', 'SupplierController@updatesupplier')->name('updatesupplier');
 		Route::get('supplier/{id}/tambahproduk', 'SupplierController@tambahproduk')->name('tambahproduk');
+		Route::post('supplier/{id}/saveproduk', 'SupplierController@saveproduk')->name('saveproduk');
 	});
 });
 
