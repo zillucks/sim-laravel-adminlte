@@ -124,7 +124,7 @@
 															<tr>
 																<td>{!! ++$subkey !!}</td>
 																<td>{!! $produk->namabarang !!}</td>
-																<td>{!! $produk->harga !!}</td>
+																<td>{!! $produk->pivot->harga !!}</td>
 															</tr>
 														@endforeach
 														</tbody>

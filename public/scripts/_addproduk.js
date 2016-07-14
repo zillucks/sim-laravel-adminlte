@@ -20,17 +20,11 @@ $(function () {
         harga.val('');
     }
 
-	var dataSource = [
-        {value:"jq", label: "jquery"},
-        {value:"bs", label: "bootstrap"},
-        {value:"js", label: "javascript"},
-        {value:"ax", label: "ajax"},
-        {value:"lv", label: "laravel"},
-        {value:"al", label: "adminlte"}
-	];
+	var dataSource = autocomplete.data('source');
 
 	autocomplete.autocomplete({
         source: dataSource,
+        type: 'GET',
         minLength : 2,
         focus: function(event, ui) {
             autocomplete.val(ui.item.label);
@@ -80,22 +74,47 @@ $(function () {
     });
 
     $('#produk-submit').on('click', '#submit-btn', function() {
-        var data = {};
+        // var data = {};
+        // $('#tbl-produk').find('tr').each(function(index){
+        //     var subdata = {};
+        //     $(this).find('td').each(function() {
+        //         subdata[$(this).data('name')] = $(this).data('value');
+        //     });
+        //     data[index] = subdata;
+        // });
+        //
+        // data = JSON.stringify(data);
+
+        var postdata = [];
+
         $('#tbl-produk').find('tr').each(function(index){
-            var subdata = {};
-            $(this).find('td').each(function() {
-                subdata[$(this).data('name')] = $(this).data('value');
-            });
-            data[index] = subdata;
+            $td = $(this).find('td');
+            postdata[index] = {}
+            $td.each(function () {
+                postdata[index][$(this).data('name')] = $(this).data('value');
+            })
         });
 
-        data = JSON.stringify(data);
+        var sentData = {};
+        sentData.sentdata = postdata;
 
         $.ajax({
-            type: 'post',
+            type: 'POST',
             url: $('#tbl-produk').data('url'),
-            data: data,
-            dataType: 'json'
+            data: sentData,
+            dataType: 'json',
+            beforeSend: function (xhr) {
+                var token = $('meta[name="csrf_token"]').attr('content');
+
+                if (token) {
+                    return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+                }
+            },
+            success: function (data) {
+                if(data.response == 'success'){
+                    window.location = data.location;
+                }
+            }
         });
     });
 });

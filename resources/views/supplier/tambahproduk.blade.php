@@ -23,7 +23,9 @@
 								<div class="form-inline col-xs-12 col-md-10 col-md-offset-1">
 									<div class="form-group ui-widget">
 										<label for="autocomplete">Cari Produk</label>
-										<input type="text" id="autocomplete" data-id="" name="kdbarang" class="form-control" placeholder="Cari Produk">
+										<input type="text" id="autocomplete"
+											   data-source="{!! route('supplier::autocplproduk', $supplier->kdsupplier) !!}"
+											   data-id="" name="kdbarang" class="form-control" placeholder="Cari Produk">
 									</div>
 									<div class="form-group">
                                         <label for="harga" class="sr-only">Harga</label>
@@ -45,7 +47,9 @@
                                     </tr>
                                     </thead>
                                     <tbody id="tbl-produk" data-url="{{ route('supplier::saveproduk', $supplier->kdsupplier) }}"></tbody>
-                                    <tfoot id="produk-submit"></tfoot>
+                                    <tfoot id="produk-submit">
+									<meta name="csrf_token" content="{!! csrf_token() !!}">
+									</tfoot>
                                 </table>
 							</div>
 						</div>
@@ -53,9 +57,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="row">
-		{{ dump(getDataProduk($supplier->kdsupplier)) }}
 	</div>
 @endsection
 

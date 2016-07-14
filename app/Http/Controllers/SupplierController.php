@@ -8,6 +8,9 @@ use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class SupplierController extends Controller
 {
@@ -66,6 +69,44 @@ class SupplierController extends Controller
 	{
 		$data['supplier'] = Supplier::find($id);
 		return view('supplier.tambahproduk', $data);
+	}
+
+    public function saveproduk(Request $request, $id)
+    {
+        $supplier = Supplier::find($id);
+        $sentdata = $request->get('sentdata');
+        $totalitem = count($sentdata);
+        $data['response'] = 'failure';
+        $data['location'] = '';
+        foreach ($sentdata as $index => $item) {
+            $kdbarang[$index] = $item['kdbarang'];
+            $harga[$index] = $item['harga'];
+            $supplier->barangs()->attach($kdbarang[$index], ['harga' => $harga[$index]]);
+
+            $lastitem = $index+1;
+            if($totalitem === $lastitem){
+                $data['response'] = 'success';
+                $data['location'] = route('supplier::supplier');
+            }
+        }
+
+        return response()->json($data);
+    }
+
+	public function autocompleteproduk($id)
+	{
+        $term = strtolower(Input::get('term'));
+
+        $produktersedia = $query = DB::select("
+            select barang.kdbarang as value, barang.namabarang as label from master.barang
+            where LOWER(barang.namabarang) like '%$term%'
+            and barang.kdbarang not in (
+                select barangsupplier.kdbarang from master.barangsupplier
+                where barangsupplier.kdsupplier = '$id'
+            )
+        ");
+
+		return $produktersedia;
 	}
 	
 }
