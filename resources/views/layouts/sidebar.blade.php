@@ -59,6 +59,13 @@
 						<li><a href="{{ route('obat::obat') }}">Daftar Obat</a></li>
 					</ul>
 				</li>
+				<li class="treeview">
+					<a href="#"><i class="fa fa-fw fa-medkit"></i> <span>Transaksi</span> <i class="fa fa-fw fa-angle-left pull-right"></i></a>
+					<ul class="treeview-menu">
+						<li><a href="{{ route('transaksi.penjualan') }}">Penjualan Obat</a></li>
+						<li><a href="{{ route('transaksi.pembelian') }}">Pembelian Obat</a></li>
+					</ul>
+				</li>
 			@elseif(Auth::user()->hasLevel('kasir'))
 				<li class="treeview">
 					<a href="#"><i class="fa fa-fw fa-medkit"></i> <span>Obat</span> <i class="fa fa-fw fa-angle-left pull-right"></i></a>

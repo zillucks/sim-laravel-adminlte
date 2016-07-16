@@ -64,6 +64,11 @@ Route::group(['middleware' => ['auth', 'role:apoteker']], function() {
 		Route::post('obat/saveobat', 'ObatController@saveobat')->name('saveobat');
 		Route::post('obat/updateobat', 'ObatController@updateobat')->name('updateobat');
 	});
+
+	Route::group(['prefix' => 'transaksi'], function() {
+		Route::get('penjualan', 'TransaksiController@penjualan')->name('transaksi.penjualan');
+		Route::get('pembelian', 'TransaksiController@pembelian')->name('transaksi.pembelian');
+	});
 });
 
 /*
