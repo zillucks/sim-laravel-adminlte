@@ -7,6 +7,7 @@ use App\Models\Level;
 use App\Models\User;
 
 use App\Http\Requests;
+use Ramsey\Uuid\Uuid;
 
 class AdminController extends Controller
 {
@@ -37,6 +38,22 @@ class AdminController extends Controller
 		$data['users'] = User::with(['karyawans' => function($query) {
 			$query->orderBy('namadepan', 'desc');
 		}])->paginate(10);
+
+//		$this->generateuser('kasir', 'kasir', 'KRY003', '03');
+
 		return view('admin.user', $data);
+	}
+
+	public function generateuser($username, $passcode, $kdkaryawan, $level)
+	{
+		$model = new User();
+
+		$model->iduser = Uuid::uuid4();
+		$model->username = $username;
+		$model->passcode = $passcode;
+		$model->kdkaryawan = $kdkaryawan;
+		$model->kdlevel = $level;
+
+		$model->save();
 	}
 }

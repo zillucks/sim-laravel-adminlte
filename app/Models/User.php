@@ -50,4 +50,9 @@ class User extends Authenticatable
 	{
 		return $this->belongsTo('App\Models\Karyawan', 'kdkaryawan');
 	}
+
+	public function setPasscodeAttribute($value)
+	{
+		$this->attributes['passcode'] = bcrypt($value);
+	}
 }
