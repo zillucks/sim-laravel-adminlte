@@ -11,7 +11,8 @@
         "fortawesome/font-awesome": "^4.6",
         "almasaeed2010/adminlte": "~2.0",
         "ramsey/uuid": "^3.4",
-        "laravelcollective/html": "^5.2"
+        "laravelcollective/html": "^5.2",
+        "tymon/jwt-auth": "0.5.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

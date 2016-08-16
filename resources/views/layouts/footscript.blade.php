@@ -7,6 +7,9 @@
 <!-- AdminLTE App -->
 <script src="{{ elixir('js/AdminLTE.js') }}"></script>
 
+<!-- custom jquery-ui (only autocomplete and datepicker) -->
+<script src="{{ elixir('js/jquery-ui-custom.js') }}"></script>
+
 <!-- x-editable javascript -->
 <script src="{{ elixir('js/x-editable.js') }}"></script>
 

@@ -62,6 +62,5 @@
 
 @section('scripts')
 	@parent
-	<script src="{{ elixir('js/jquery-ui-custom.js') }}"></script>
 	<script src="{{ asset('scripts/_addproduk.js') }}"></script>
 @endsection

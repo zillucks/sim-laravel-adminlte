@@ -17,9 +17,9 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', [
-			'except' => ['index', 'frontLogin']
-		]);
+//        $this->middleware('auth', [
+//			'except' => ['index', 'frontLogin']
+//		]);
     }
 
     /**
@@ -68,4 +68,32 @@ class HomeController extends Controller
 			}
         }
     }
+
+	public function androidlogin()
+	{
+		$rules = array( 'username' => 'required',
+			'password' => 'required'
+		);
+		$validator = Validator::make(Input::all(), $rules);
+
+		if($validator->fails())
+		{
+			$messages = $validator->messages();
+			return $messages;
+		}
+		else
+		{
+			$users = [
+				'username'	=> Input::get('username'),
+				'password'	=> Input::get('password')
+			];
+
+			if(Auth::attempt($users)){
+				return Auth::user();
+			}
+			else {
+				return array(['errorusername' => 'Username or Password is Invalid']);
+			}
+		}
+	}
 }

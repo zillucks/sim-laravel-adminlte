@@ -45,6 +45,11 @@ class Barang extends Model
 			->withPivot('harga');
 	}
 
+	public function detailpembelian()
+	{
+		return $this->hasMany('App\Models\DetailPembelian', 'kdbarang');
+	}
+
 	public function getBarangtersedia($id, $term)
 	{
 		$query = DB::select("

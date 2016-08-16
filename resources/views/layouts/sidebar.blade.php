@@ -60,10 +60,11 @@
 					</ul>
 				</li>
 				<li class="treeview">
-					<a href="#"><i class="fa fa-fw fa-medkit"></i> <span>Transaksi</span> <i class="fa fa-fw fa-angle-left pull-right"></i></a>
+					<a href="#"><i class="fa fa-fw fa-shopping-bag"></i> <span>Transaksi</span> <i class="fa fa-fw fa-angle-left pull-right"></i></a>
 					<ul class="treeview-menu">
+						<li><a href="{{ route('transaksi.pemesananpembelian') }}">Pembelian Obat</a></li>
 						<li><a href="{{ route('transaksi.penjualan') }}">Penjualan Obat</a></li>
-						<li><a href="{{ route('transaksi.pembelian') }}">Pembelian Obat</a></li>
+						<li><a href="{{ route('transaksi.pembayaranpembelian') }}">Bayar Pembelian</a></li>
 					</ul>
 				</li>
 			@elseif(Auth::user()->hasLevel('kasir'))
@@ -72,6 +73,14 @@
 					<ul class="treeview-menu">
 						<li><a href="{{ route('setting::jabatan') }}">Daftar Kategori Obat</a></li>
 						<li><a href="{{ route('setting::jabatan') }}">Daftar Obat</a></li>
+					</ul>
+				</li>
+				<li class="treeview">
+					<a href="#"><i class="fa fa-fw fa-shopping-bag"></i> <span>Transaksi</span> <i class="fa fa-fw fa-angle-left pull-right"></i></a>
+					<ul class="treeview-menu">
+						<li><a href="{{ route('transaksi.pemesananpembelian') }}"><i class="fa fa-fw fa-shopping-cart"></i> <span>Pembelian Obat</span> </a></li>
+						<li><a href="{{ route('transaksi.pembayaranpembelian') }}"><i class="fa fa-fw fa-money"></i> <span>Pembayaran</span> </a></li>
+						<li><a href="{{ route('transaksi.penjualan') }}"><i class="fa fa-fw fa-shopping-cart"></i> <span>Penjualan Obat</span></a></li>
 					</ul>
 				</li>
 			@else

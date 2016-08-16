@@ -133,7 +133,7 @@
 						<li class="user-header">
 							<img src="{{ asset('img/user-default.png') }}" class="img-circle" alt="User Image">
 							<p>
-								{!! Auth::user()->karyawans->namadepan. ' ' . Auth::user()->karyawans->namabelakang . ' - ' . Auth::user()->karyawans->jabatans->jabatan!!}
+								{!! Auth::user()->karyawans->namadepan. ' ' . Auth::user()->karyawans->namabelakang!!}
 								<small>Member since Nov. 2012</small>
 							</p>
 						</li>

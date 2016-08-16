@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'id',
 
     /*
     |--------------------------------------------------------------------------
@@ -162,6 +162,11 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
 
+		/**
+		 * JWT Providers
+		 */
+		'Tymon\JWTAuth\Providers\JWTAuthServiceProvider'
+
     ],
 
     /*
@@ -213,6 +218,8 @@ return [
          */
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+
+		'JWTAuth' => 'Tymon\JWTAuth\Facades\JWTAuth',
 
     ],
 

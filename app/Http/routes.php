@@ -11,6 +11,10 @@
 |
 */
 
+// CORS
+header('Access-Control-Allow-Origin: http://localhost:8100');
+header('Access-Control-Allow-Credentials: true');
+
 Route::get('/', 'HomeController@index');
 
 Route::post('/customlogin', 'HomeController@frontLogin');
@@ -66,8 +70,17 @@ Route::group(['middleware' => ['auth', 'role:apoteker']], function() {
 	});
 
 	Route::group(['prefix' => 'transaksi'], function() {
+		Route::get('pemesananpembelian/{startdate?}/{enddate?}', 'TransaksiController@pemesananpembelian')->name('transaksi.pemesananpembelian');
+		Route::get('tambahpemesananpembelian', 'TransaksiController@tambahpemesananpembelian')->name('transaksi.tambahpemesananpembelian');
+		Route::post('simpanpemesananpembelian', 'TransaksiController@simpanpemesananpembelian')->name('transaksi.simpanpemesananpembelian');
+		Route::get('detailpemesananpembelian/{id}', 'TransaksiController@detailpemesananpembelian')->name('transaksi.detailpemesananpembelian');
+		Route::get('pembayaranpembelian', 'TransaksiController@pembayaranpembelian')->name('transaksi.pembayaranpembelian');
+		Route::get('pembayaranpembelian/{kdpembelian?}', 'TransaksiController@pembayaranpembelian')->name('transaksi.pembayaranpembelian');
+		Route::post('pembayaran/{kdpembelian}', 'TransaksiController@prosespembayaran')->name('transaksi.pembayaran');
+		Route::get('autosupplier', 'TransaksiController@autosupplier')->name('transaksi.autosupplier');
+		Route::get('autocompletebarangsupplier', 'TransaksiController@autocompletebarangsupplier')->name('transaksi.autocplbarangsupplier');
+
 		Route::get('penjualan', 'TransaksiController@penjualan')->name('transaksi.penjualan');
-		Route::get('pembelian', 'TransaksiController@pembelian')->name('transaksi.pembelian');
 	});
 });
 
@@ -75,5 +88,14 @@ Route::group(['middleware' => ['auth', 'role:apoteker']], function() {
  * Route for kasir
  */
 Route::group(['middleware' => ['auth', 'role:kasir']], function() {
-	//
+	Route::group(['prefix' => 'transaksi'], function() {
+		Route::get('/', 'TransaksiController@penjualan');
+		Route::get('penjualan', 'TransaksiController@penjualan')->name('transaksi.penjualan');
+	});
+});
+Route::group(['middleware' => 'cors'], function () {
+	Route::group(['prefix' => 'android'], function () {
+		Route::get('supplier', 'SupplierController@androidsupplier')->name('android.supplier');
+		Route::post('login', 'HomeController@androidlogin')->name('android.login');
+	});
 });

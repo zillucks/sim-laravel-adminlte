@@ -49,4 +49,9 @@ class Supplier extends Model
 			->withPivot('harga');
 	}
 
+	public function pembelians()
+	{
+		return $this->hasMany('App\Models\Pemesananpembelian', 'kdsupplier');
+	}
+
 }

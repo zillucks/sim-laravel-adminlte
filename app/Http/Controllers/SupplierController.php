@@ -108,5 +108,11 @@ class SupplierController extends Controller
 
 		return $produktersedia;
 	}
-	
+
+	public function androidsupplier()
+	{
+		$supplier = Supplier::all();
+
+		return $supplier;
+	}
 }

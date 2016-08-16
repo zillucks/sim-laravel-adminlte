@@ -42,14 +42,15 @@ elixir(function(mix) {
 
 		/*
 		 * Custom jquery-ui.js
-		 * only use autocomplete
+		 * only use autocomplete and datepicker
 		 */
 		.scripts([
 			path.jqueryui + 'ui/core.js',
 			path.jqueryui + 'ui/widget.js',
 			path.jqueryui + 'ui/position.js',
 			path.jqueryui + 'ui/menu.js',
-			path.jqueryui + 'ui/autocomplete.js'
+			path.jqueryui + 'ui/autocomplete.js',
+			path.jqueryui + 'ui/datepicker.js'
 		], 'public/js/jquery-ui-custom.js')
 
 		.styles(path.adminlte + 'plugins/morris/morris.css', 'public/css/morris.css')
