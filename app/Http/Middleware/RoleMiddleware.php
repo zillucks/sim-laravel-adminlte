@@ -11,11 +11,12 @@ class RoleMiddleware
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
+	 * @param array $roles
      * @return mixed
      */
-    public function handle($request, Closure $next, $role)
+    public function handle($request, Closure $next, ...$roles)
     {
-        if(!$request->user()->hasLevel($role)) {
+		if(!in_array($request->user()->getLevel(), $roles)){
 			if($request->ajax() || $request->wantsJson()) {
 				return response('Unauthorized!!!', 401);
 			}
@@ -23,6 +24,6 @@ class RoleMiddleware
 				return response('Unauthorized action', 403);
 			}
 		}
-        return $next($request);
+		return $next($request);
     }
 }

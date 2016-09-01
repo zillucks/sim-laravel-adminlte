@@ -62,6 +62,11 @@ class Pembelian extends Model
 		$this->attributes['tglpembelian'] = Carbon::createFromFormat('d-m-Y', $value)->toDateString();
 	}
 
+	public function setTgljatuhtempoAttribute($value)
+	{
+		$this->attributes['tgljatuhtempo'] = Carbon::createFromFormat('d-m-Y', $value)->toDateString();
+	}
+
 	public function getTglpembelianAttribute($value)
 	{
 		return $this->attributes['tglpembelian'] = toLocaleDate($value);

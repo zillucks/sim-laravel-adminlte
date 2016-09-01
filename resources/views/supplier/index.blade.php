@@ -32,7 +32,7 @@
 					<meta name="csrf-token" content="{{ csrf_token() }}">
 					<div class="box-group" id="accordion">
 						@foreach($suppliers as $key => $supplier)
-							<div id="editable-field" class="panel box no-border" data-pk="{!! $supplier->kdsupplier !!}" data-url="{{ route('supplier::updatesupplier') }}">
+							<div class="panel box no-border editable-field" data-url="{{ route('supplier::updatesupplier') }}">
 								<div class="box-header with-border">
 									<div class="box-title">
 										<a href="#" class="namasupplier" id="namasupplier" data-type="text" data-pk="{!! $supplier->kdsupplier !!}">{!! $supplier->namasupplier !!}</a>
@@ -43,7 +43,7 @@
 										</a>
 									</div>
 								</div>
-								<div id="produk-{!! str_slug($supplier->namasupplier) !!}" class="panel-collapse collapse">
+								<div id="produk-{!! str_slug($supplier->namasupplier) !!}" data-pk="{!! $supplier->kdsupplier !!}" class="panel-collapse collapse">
 									<div class="box-body no-padding">
 										<div class="col-xs-12 col-md-3">
 											<div class="box no-padding">
@@ -55,46 +55,66 @@
 														<div class="row form-group">
 															<label for="contactperson" class="control-label col-xs-4">Contact Person</label>
 															<div class="col-xs-8">
-																<a href="#" class="contactperson" id="contactperson" data-type="text"
+																<a href="#" class="contactperson" id="contactperson"
+																   data-type="text"
+																   data-pk="{!! $supplier->kdsupplier !!}"
 																   data-mode="inline">{!! $supplier->contactperson !!}</a>
 															</div>
 														</div>
 														<div class="row form-group">
 															<label for="email" class="control-label col-xs-4">E-mail</label>
 															<div class="col-xs-8">
-																<a href="#" class="email" id="email" data-type="email" data-mode="inline"
+																<a href="#" class="email" id="email" data-type="email"
+																   data-mode="inline"
+																   data-pk="{!! $supplier->kdsupplier !!}"
 																   data-placeholder="E-mail">{!! $supplier->email !!}</a>
 															</div>
 														</div>
 														<div class="row form-group">
 															<label for="notelp" class="control-label col-xs-4">No. Telp</label>
 															<div class="col-xs-8">
-																<a href="#" class="notelp" id="notelp" data-type="text" data-mode="inline"
+																<a href="#" class="notelp" id="notelp" data-type="text"
+																   data-mode="inline"
+																   data-pk="{!! $supplier->kdsupplier !!}"
 																   data-placeholder="No. Telp">{!! $supplier->notelp !!}</a>
 															</div>
 														</div>
 														<div class="row form-group">
 															<label for="nohp" class="control-label col-xs-4">No. HP</label>
 															<div class="col-xs-8">
-																<a href="#" class="nohp" id="nohp" data-type="text" data-mode="inline"
+																<a href="#" class="nohp" id="nohp" data-type="text"
+																   data-mode="inline"
+																   data-pk="{!! $supplier->kdsupplier !!}"
 																   data-placeholder="No. HP">{!! $supplier->nohp !!}</a>
 															</div>
 														</div>
 														<div class="row form-group">
 															<label for="alamat" class="control-label col-xs-4">Alamat</label>
 															<div class="col-xs-8">
-																<a href="#" class="alamat" id="alamat" data-type="textarea" data-mode="inline"
+																<a href="#" class="alamat" id="alamat" data-type="textarea"
+																   data-mode="inline"
+																   data-pk="{!! $supplier->kdsupplier !!}"
 																   data-placeholder="Alamat">{!! $supplier->alamat !!}</a>
 															</div>
 														</div>
 													</div>
 													<div class="hidden-xs">
 														<ul class="list-unstyled">
-															<li><a href="#" class="contactperson" id="contactperson" data-type="text">{!! $supplier->contactperson !!}</a></li>
-															<li><a href="#" class="email" id="email" data-type="email" data-placeholder="E-mail">{!! $supplier->email !!}</a></li>
-															<li><a href="#" class="notelp" id="notelp" data-type="text" data-placeholder="No. Telp">{!! $supplier->notelp !!}</a></li>
-															<li><a href="#" class="nohp" id="nohp" data-type="text" data-placeholder="No. HP">{!! $supplier->nohp !!}</a></li>
-															<li><a href="#" class="alamat" id="alamat" data-type="textarea" data-placeholder="Alamat">{!! $supplier->alamat !!}</a></li>
+															<li>
+																<a href="#" class="contactperson" id="contactperson" data-type="text" data-pk="{!! $supplier->kdsupplier !!}">{!! $supplier->contactperson !!}</a>
+															</li>
+															<li>
+																<a href="#" class="email" id="email" data-type="email" data-placeholder="E-mail" data-pk="{!! $supplier->kdsupplier !!}">{!! $supplier->email !!}</a>
+															</li>
+															<li>
+																<a href="#" class="notelp" id="notelp" data-type="text" data-placeholder="No. Telp" title="No. Telp" data-pk="{!! $supplier->kdsupplier !!}">{!! $supplier->notelp !!}</a>
+															</li>
+															<li>
+																<a href="#" class="nohp" id="nohp" data-type="text" data-placeholder="No. HP" data-pk="{!! $supplier->kdsupplier !!}">{!! $supplier->nohp !!}</a>
+															</li>
+															<li>
+																<a href="#" class="alamat" id="alamat" data-type="textarea" data-placeholder="Alamat" data-pk="{!! $supplier->kdsupplier !!}">{!! $supplier->alamat !!}</a>
+															</li>
 														</ul>
 													</div>
 												</div>

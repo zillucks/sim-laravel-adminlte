@@ -56,16 +56,18 @@ class SupplierController extends Controller
 
 	public function updatesupplier(Request $request)
 	{
-		$supplier = Supplier::find($request->pk);
+		$supplier = Supplier::find($request->get('pk'));
 
 		$name = $request->get('name');
 		$value = $request->get('value');
 		$supplier->$name = $value;
 
 		$supplier->save();
+
+		return redirect()->back();
 	}
 
-	public function tambahproduk(Request $request, $id)
+	public function tambahproduk($id)
 	{
 		$data['supplier'] = Supplier::find($id);
 		return view('supplier.tambahproduk', $data);

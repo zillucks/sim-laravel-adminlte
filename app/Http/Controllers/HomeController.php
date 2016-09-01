@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Models\Barang;
 use Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +31,10 @@ class HomeController extends Controller
     public function index()
     {
 		if(Auth::check()){
-			return view('home');
+			$data['stoklimit'] = Barang::whereRaw('stok <= stokmin')
+				->orderBy('stok', 'desc')
+				->get();
+			return view('home', $data);
 		}
 		else{
 			return view('welcome');

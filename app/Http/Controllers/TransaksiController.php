@@ -69,10 +69,10 @@ class TransaksiController extends Controller
 				$barang->stok += $request->qty[$item];
 
 				$barang->update();
-				$pembelian->detailpembelian()->save($detailpembelian);
+				$pembelian->detailpembelians()->save($detailpembelian);
 			}
 		});
-		
+
 		return redirect()->route('transaksi.pemesananpembelian')->with('success', 'Input Data PO Sukses');
 		
 	}
@@ -155,6 +155,15 @@ class TransaksiController extends Controller
 			->orWhereRaw("lower(t2.kdbarang) like '%$term%'")
 			->selectRaw("t2.namabarang, concat(t2.kdbarang, ' - ', t2.namabarang) as label, t1.kdbarang as value, t1.harga")
 			->get();
+
+		return $query;
+	}
+
+	public function autoproduk()
+	{
+		$term = strtolower(Input::get('term'));
+
+		$query = Barang::whereRaw("lower(namabarang) like '%$term%'")->select(['namabarang as label', 'kdbarang as value', 'hargajual'])->get();
 
 		return $query;
 	}

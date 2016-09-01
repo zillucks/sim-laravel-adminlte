@@ -41,6 +41,11 @@ class User extends Authenticatable
 		return $this->levels->level == $role ? true : false;
 	}
 
+	public function getLevel()
+	{
+		return $this->levels->level;
+	}
+
 	public function levels ()
 	{
 		return $this->belongsTo('App\Models\Level', 'kdlevel');

@@ -42,7 +42,7 @@
 						@endforeach()
 						</tbody>
 						<tfoot>
-						<td><i class="fa fa-plus-circle"></i></td>
+						<td style="vertical-align: middle;"><i class="fa fa-plus-circle"></i></td>
 						<td colspan="3">
 							{!! Form::open(['method' => 'post', 'class' => 'form form-inline']) !!}
 							<div class="form-group">

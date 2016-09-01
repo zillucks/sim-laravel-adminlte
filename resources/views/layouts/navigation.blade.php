@@ -134,14 +134,11 @@
 							<img src="{{ asset('img/user-default.png') }}" class="img-circle" alt="User Image">
 							<p>
 								{!! Auth::user()->karyawans->namadepan. ' ' . Auth::user()->karyawans->namabelakang!!}
-								<small>Member since Nov. 2012</small>
+								<small>{!! Auth::user()->levels->level !!}</small>
 							</p>
 						</li>
 						<!-- Menu Footer-->
 						<li class="user-footer">
-							<div class="pull-left">
-								<a href="#" class="btn btn-default btn-flat">Profile</a>
-							</div>
 							<div class="pull-right">
 								<a href="{{ url('logout') }}" class="btn btn-default btn-flat">Sign out</a>
 							</div>

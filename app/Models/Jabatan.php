@@ -13,6 +13,6 @@ class Jabatan extends Model
 
 	public function karyawans()
 	{
-		return $this->hasOne('App\Models\Karyawan', 'kdjabatan');
+		return $this->hasMany('App\Models\Karyawan', 'kdjabatan');
 	}
 }

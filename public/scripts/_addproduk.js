@@ -74,19 +74,7 @@ $(function () {
     });
 
     $('#produk-submit').on('click', '#submit-btn', function() {
-        // var data = {};
-        // $('#tbl-produk').find('tr').each(function(index){
-        //     var subdata = {};
-        //     $(this).find('td').each(function() {
-        //         subdata[$(this).data('name')] = $(this).data('value');
-        //     });
-        //     data[index] = subdata;
-        // });
-        //
-        // data = JSON.stringify(data);
-
         var postdata = [];
-
         $('#tbl-produk').find('tr').each(function(index){
             $td = $(this).find('td');
             postdata[index] = {}
@@ -97,7 +85,6 @@ $(function () {
 
         var sentData = {};
         sentData.sentdata = postdata;
-
         $.ajax({
             type: 'POST',
             url: $('#tbl-produk').data('url'),

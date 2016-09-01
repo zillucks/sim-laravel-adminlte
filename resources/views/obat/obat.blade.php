@@ -12,7 +12,7 @@
 				<h3 class="box-title">Daftar Obat</h3>
 				<div class="box-tools">
 					<div class="pull-right">
-						<a href="{{ route('obat::tambahobat') }}" title="Tambah Data Obat" class="btn btn-sm btn-info">
+						<a href="{{ route('obat::tambahobat') }}" title="Tambah Data Obat" class="btn btn-link">
 							<i class="fa fa-fw fa-plus"></i>
 						</a>
 					</div>

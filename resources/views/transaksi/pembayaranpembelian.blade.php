@@ -8,6 +8,13 @@
 @section('content')
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
+            @if(Request::session()->has('success'))
+                <div class="alert alert-success alert-dismissable">
+                    <button class="close" type="button" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h4><i class="fa fa-check"></i> Success</h4>
+                    {!! Request::session()->get('success') !!}
+                </div>
+            @endif
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Daftar PO</h3>
@@ -23,7 +30,7 @@
                         <th>Total</th>
                         <th>Bayar</th>
                         <th>Sisa Hutang</th>
-                        <th><i class="fa fa-fw fa-money"></i></th>
+                        <th class="text-center"><i class="fa fa-fw fa-wrench"></i></th>
                         </thead>
                         <tbody>
                         @foreach($pembelian as $item => $value)

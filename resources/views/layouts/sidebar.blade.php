@@ -33,13 +33,13 @@
 
 			{{--user role permission--}}
 			@if(Auth::user()->hasLevel('administrator'))
-				<li><a href="#"><i class="fa fa-fw fa-users"></i> <span>Data Karyawan</span></a></li>
+				<li><a href="{{ route('karyawan') }}"><i class="fa fa-fw fa-users"></i> <span>Data Karyawan</span></a></li>
 				<li><a href="{{ url('supplier') }}"><i class="fa fa-fw fa-truck"></i> <span>Supplier</span></a></li>
 				<li class="treeview">
 					<a href="#"><i class="fa fa-fw fa-medkit"></i> <span>Obat</span> <i class="fa fa-fw fa-angle-left pull-right"></i></a>
 					<ul class="treeview-menu">
-						<li><a href="{{ route('setting::jabatan') }}">Daftar Kategori Obat</a></li>
-						<li><a href="{{ route('setting::jabatan') }}">Daftar Obat</a></li>
+						<li><a href="{{ route('obat::kategori') }}">Daftar Kategori Obat</a></li>
+						<li><a href="{{ route('obat::obat') }}">Daftar Obat</a></li>
 					</ul>
 				</li>
 			@elseif(Auth::user()->hasLevel('manager'))
@@ -71,15 +71,14 @@
 				<li class="treeview">
 					<a href="#"><i class="fa fa-fw fa-medkit"></i> <span>Obat</span> <i class="fa fa-fw fa-angle-left pull-right"></i></a>
 					<ul class="treeview-menu">
-						<li><a href="{{ route('setting::jabatan') }}">Daftar Kategori Obat</a></li>
-						<li><a href="{{ route('setting::jabatan') }}">Daftar Obat</a></li>
+						<li><a href="{{ route('obat::kategori') }}">Daftar Kategori Obat</a></li>
+						<li><a href="{{ route('obat::obat') }}">Daftar Obat</a></li>
 					</ul>
 				</li>
 				<li class="treeview">
 					<a href="#"><i class="fa fa-fw fa-shopping-bag"></i> <span>Transaksi</span> <i class="fa fa-fw fa-angle-left pull-right"></i></a>
 					<ul class="treeview-menu">
 						<li><a href="{{ route('transaksi.pemesananpembelian') }}"><i class="fa fa-fw fa-shopping-cart"></i> <span>Pembelian Obat</span> </a></li>
-						<li><a href="{{ route('transaksi.pembayaranpembelian') }}"><i class="fa fa-fw fa-money"></i> <span>Pembayaran</span> </a></li>
 						<li><a href="{{ route('transaksi.penjualan') }}"><i class="fa fa-fw fa-shopping-cart"></i> <span>Penjualan Obat</span></a></li>
 					</ul>
 				</li>
