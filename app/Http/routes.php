@@ -89,6 +89,7 @@ Route::group(['middleware' => 'auth'], function() {
 			Route::get('autocompletebarangsupplier', 'TransaksiController@autocompletebarangsupplier')->name('transaksi.autocplbarangsupplier');
 
 			Route::get('penjualan', 'TransaksiController@penjualan')->name('transaksi.penjualan');
+			Route::post('penjualan', 'TransaksiController@penjualan')->name('transaksi.penjualan');
 			Route::get('autoproduk', 'TransaksiController@autoproduk')->name('transaksi.autoproduk');
 		});
 	});

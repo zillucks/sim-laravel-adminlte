@@ -52,6 +52,7 @@
 					</tbody>
 				</table>
 			</div>
+			<div class="box-footer">{!! $obats->render() !!}</div>
 		</div>
 	</div>
 @endsection

@@ -30,7 +30,7 @@ class Pembelian extends Model
 	}
 
 	/**
-	 * @param $value
+	 * @param $data
 	 * @return string
 	 * @set accessor and mutator
 	 */

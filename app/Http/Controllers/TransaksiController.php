@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\DetailPembelian;
+use App\Models\DetailPenjualan;
+use App\Models\Pelanggan;
 use App\Models\PembayaranPembelian;
 use App\Models\Pembelian;
+use App\Models\Penjualan;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 
@@ -115,7 +118,7 @@ class TransaksiController extends Controller
 		$pembayaranPembelian->tglbayar = date('Y-m-d');
 		$pembayaranPembelian->jmlbayar = $request->jmlbayar;
 
-		DB::transaction(function ()use ($request, $pembelian, $pembayaranPembelian) {
+		DB::transaction(function () use ($request, $pembelian, $pembayaranPembelian) {
 			$pembayaranPembelian->save();
 
 			$pembelian->bayar += $request->jmlbayar;
@@ -126,8 +129,52 @@ class TransaksiController extends Controller
 		return redirect()->route('transaksi.pembayaranpembelian')->with('success', 'Proses Pembayaran Berhasil');
 	}
 
-    public function penjualan()
+    public function penjualan(Request $request, Penjualan $penjualan)
     {
+		if($request->isMethod('post')){
+
+			$validator = $penjualan->validate($request->all());
+			if($validator->fails()){
+				return redirect()->back()
+					->withErrors($validator);
+			}
+			$penjualan->kdpenjualan = $penjualan->setKdpenjualan($request->tglpenjualan);
+			$penjualan->tglpenjualan = $request->tglpenjualan;
+			$penjualan->nofaktur = $request->nofaktur;
+
+			$cekpelanggan = Pelanggan::find($penjualan->kdpelanggan);
+			if(!$cekpelanggan){
+				$penjualan->kdpelanggan = '000000';
+				$penjualan->pelanggan = $request->kdpelanggan;
+			}
+			else{
+				$penjualan->kdpelanggan = $request->kdpelanggan;
+				$penjualan->pelanggan = $cekpelanggan->nama;
+			}
+			$penjualan->subtotal = $request->subtotal;
+			$penjualan->iduser = Auth::user()->iduser;
+
+			DB::transaction (function () use ($penjualan, $request) {
+				$penjualan->save();
+				
+				foreach ($request->kdbarang as $item => $value) {
+					$detailpenjualan = new DetailPenjualan();
+					
+					$detailpenjualan->kddetailpenjualan = $penjualan->kdpenjualan;
+					$detailpenjualan->kdbarang = $value;
+					$detailpenjualan->qty = $request->qty[$item];
+					$detailpenjualan->total = $request->total[$item];
+
+					$barang = Barang::find($value);
+					$barang->stok -= $request->qty[$item];
+
+					$barang->update();
+					$penjualan->detailpenjualans()->save($detailpenjualan);
+				}
+			});
+
+			return redirect()->route('transaksi.penjualan')->with('success', 'Input Data Penjualan Sukses');
+		}
         return view('transaksi.penjualan');
     }
 
